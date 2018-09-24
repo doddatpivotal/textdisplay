@@ -7,57 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
-public class TextDisplay {
+//@SpringBootApplication
+public class TextDisplay implements Function<String, String> {
 
-    public static void main(String[] args) {
-        SpringApplication.run(TextDisplay.class, args);
-    }
 
-    private static final String[] tensNames = {
-            "",
-            " ten",
-            " twenty",
-            " thirty",
-            " forty",
-            " fifty",
-            " sixty",
-            " seventy",
-            " eighty",
-            " ninety"
-    };
-
-    private static final String[] numNames = {
-            "",
-            " one",
-            " two",
-            " three",
-            " four",
-            " five",
-            " six",
-            " seven",
-            " eight",
-            " nine",
-            " ten",
-            " eleven",
-            " twelve",
-            " thirteen",
-            " fourteen",
-            " fifteen",
-            " sixteen",
-            " seventeen",
-            " eighteen",
-            " nineteen"
-    };
-
-    @Bean
-    public Function<Long, String> textdisplay() {
-
-        return this::convert;
-    }
-
-    private String convert(long number) {
+    public String apply(String numberasstring) {
         // 0 to 999 999 999 999
+        long number=Long.parseLong(numberasstring);
+
         if (number == 0) { return "zero"; }
 
         // pad with "0"
@@ -128,6 +85,51 @@ public class TextDisplay {
         System.out.println(result);
         return result;
     }
+
+
+    private static final String[] tensNames = {
+            "",
+            " ten",
+            " twenty",
+            " thirty",
+            " forty",
+            " fifty",
+            " sixty",
+            " seventy",
+            " eighty",
+            " ninety"
+    };
+
+    private static final String[] numNames = {
+            "",
+            " one",
+            " two",
+            " three",
+            " four",
+            " five",
+            " six",
+            " seven",
+            " eight",
+            " nine",
+            " ten",
+            " eleven",
+            " twelve",
+            " thirteen",
+            " fourteen",
+            " fifteen",
+            " sixteen",
+            " seventeen",
+            " eighteen",
+            " nineteen"
+    };
+
+  /*  @Bean
+    public Function<Long, String> textdisplay() {
+
+        return this::convert;
+    }
+*/
+
 
     private String convertLessThanOneThousand(int number) {
         String soFar;
